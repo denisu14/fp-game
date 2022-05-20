@@ -1,31 +1,26 @@
 package com.denisu.fpgame;
-
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.denisu.fpgame.player.GamePlayer;
+import com.badlogic.gdx.graphics.GL30;
 
 public class FpGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
+    ShapeRenderer shape;
+	GamePlayer player;
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+    @Override
+    public void create () {
+        shape = new ShapeRenderer();
+		player = new GamePlayer();
+    }
+
+    @Override
+    public void render () {
+		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+		player.x += 2;
+        shape.begin(ShapeRenderer.ShapeType.Filled);
+        shape.circle(player.x, 50, 50);
+        shape.end();
+    }
 }
