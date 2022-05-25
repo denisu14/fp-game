@@ -1,9 +1,12 @@
 package com.denisu.fpgame;
+import java.util.Timer;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.denisu.fpgame.Screen.MScreen;
 import com.denisu.fpgame.Screen.ScreenUtil;
+import com.denisu.fpgame.fileIO.FileIO;
 import com.denisu.fpgame.player.GamePlayer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
@@ -17,13 +20,17 @@ public class FpGame extends ApplicationAdapter {
     BitmapFont mainFont;
     private SpriteBatch sprites;
     private TextureAtlas atlas;
-    public static int WIDTH = 400, HEIGHT = 200;
+    public static int WIDTH = 240, HEIGHT = 160;
     private SpriteBatch batch;
+    private Timer t;
+    long startTime;
 
     @Override
 	public void create() {		
 		batch = new SpriteBatch();
 		ScreenUtil.setScreen(new MScreen());
+        t = new Timer();
+        startTime = System.currentTimeMillis();
 	}
 
 	@Override
@@ -31,6 +38,8 @@ public class FpGame extends ApplicationAdapter {
 		if (ScreenUtil.getCurrentScreen() != null)
             ScreenUtil.getCurrentScreen().dispose();
 		batch.dispose();
+        t.cancel();
+        FileIO.WriteHighscore((System.currentTimeMillis()-startTime)/1000+ " seconds.");
 	}
 
 	@Override

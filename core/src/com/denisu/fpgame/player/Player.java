@@ -40,7 +40,7 @@ public class Player extends EntityBase {
 		
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			if (System.currentTimeMillis() - lastFire >= 350) {
-				entityManager.addEntity(new BulletEntity(pos.cpy().add(TextureDirs.PLAYER.getWidth()/2 ,TextureDirs.PLAYER.getHeight())));
+				entityManager.addEntity(new BulletEntity(pos.cpy().add((TextureDirs.PLAYER.getWidth()/2)-4 ,TextureDirs.PLAYER.getHeight())));
 				lastFire = System.currentTimeMillis();
 			}
 		}

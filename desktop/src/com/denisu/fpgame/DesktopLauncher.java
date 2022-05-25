@@ -9,7 +9,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setWindowedMode(FpGame.WIDTH,FpGame.HEIGHT);
+		config.setWindowedMode(640,480);
 		config.useVsync(true);
 		config.setTitle("denisu-game");
 		new Lwjgl3Application(new FpGame(), config);
